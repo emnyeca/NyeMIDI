@@ -1,23 +1,3 @@
-了解です。前回案の弱点は、READMEが「開発前メモ」になっていた点です。今回は、**完成プロダクトのREADME**として、開発段階に依存する見出しを消し、AIや共同開発者が勝手に方向転換しにくいように責務を固定します。
-
-整理すると、NyeMIDIは単なるUdonライブラリではなく、次の2層にした方が筋がよいです。
-
-1. **NyeMIDI Mapper**
-   Digitone / Digitakt / MIDIコントローラーのトリガー・ノブ・エンコーダー情報を、VRChatで扱いやすいNote / CCへ整える軽量GUIアプリ。
-
-2. **NyeMIDI World Package**
-   ワールド制作者がUnity / VCC / VPMで組み込みやすい、Prefab中心のUdonSharpパッケージ。
-
-この構成なら、一般ミュージシャンはGUIで信号を扱い、ワールド制作者はPrefabを置いてマッピングを受ける、という分担になります。レポート上でも、VRChat側の堅い入口はRealtime MIDIであり、Note On / Off / CCを軸にするのが現実的と整理されています。 また、相対エンコーダー方式は機材差が出るため、固定実装ではなく設定可能なデコーダー層にする方が安全です。 EUB全体の方針としても、保守できる構造と、人間が監修できる形を優先するのが合っています。
-
-## Repository Description 案
-
-A lightweight MIDI mapping and VRChat world-integration toolkit for turning Digitone, Digitakt, and controller performance data into VRC-ready Note/CC interactions.
-
-日本語版ならこちらです。
-
-Digitone / Digitakt / MIDIコントローラーの演奏操作を、VRChatワールドで扱いやすいNote/CCインタラクションへ変換・接続する軽量MIDIツールキット。
-
 ## README.md 案
 
 # NyeMIDI
@@ -421,9 +401,3 @@ Suggested options:
 ## Related Project
 
 NyeMIDI is part of **Emnyeca's Utility Build Series**, a collection of tools and systems for VR music performance, machine-live workflows, and practical creative environments.
-
-## 重要な設計判断
-
-このREADMEでは、**「VRChat公式Realtime MIDIの後段に置くUdonライブラリ」だけではなく、「その前段の軽量GUI Mapper」も正式にNyeMIDIの責務に含めました**。ここを入れないと、一般ミュージシャン向けの実用性が落ちます。
-
-ただし、注意点もあります。VRChat側が受けやすいのは基本的にNote / CCなので、GUI Mapper側で高度なMIDI情報を扱えても、**ワールドに渡す境界はNote / CC中心に固定**した方が安定します。Pitch Bend、Aftertouch、NRPN、SysExまでREADMEの中核に入れると、AIが後で過剰実装しがちです。今回は意図的に「core responsibilityではない」と書いてあります。
