@@ -1,5 +1,3 @@
-## README.md 案
-
 # NyeMIDI
 
 **NyeMIDI** is a lightweight MIDI mapping and VRChat world-integration toolkit for live music performance.
